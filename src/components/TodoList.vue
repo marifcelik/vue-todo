@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 
 const todo = ref('')
 const todos = ref([])
@@ -16,7 +16,7 @@ function removeTodo(i) {
   localStorage.setItem('todos', JSON.stringify(todos.value))
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   const data = JSON.parse(localStorage.getItem('todos') ?? '[]')
   if (data.length > 0) {
     todos.value = data;
